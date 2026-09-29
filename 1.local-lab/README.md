@@ -15,5 +15,12 @@ vagrant init bento/ubuntu-24.04
 vagrant up 
 vagrant status 
 vagrant ssh 
+
+# shutdown 
+vagrant halt 
+vagrant destroy -f # delete the vm 
+
+# reload the inline script 
+vagrant reload --provision
 ```
 
