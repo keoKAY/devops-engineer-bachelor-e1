@@ -1,0 +1,29 @@
+volumes:
+  mydatabase-vol: 
+services:
+  cont1: 
+    container_name: nginx1
+    image: nginx
+    ports:
+      - 3001:80 
+  cont2: 
+    container_name: postgres-cont 
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+    volumes:
+      - mydatabase-vol:/var/lib/postgresql
+    ports:
+      - 5432:5432
+  cont3: 
+    container_name: nginx3
+    image: nginx
+    ports:
+      - 3002:80 
+
+
+# docker compose config # preview 
+# docker compose up -d # start the service
+# docker compose down # stop service 

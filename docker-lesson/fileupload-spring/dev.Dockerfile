@@ -21,6 +21,7 @@ ENV PORT=${PORT}
 WORKDIR /app
 COPY --from=builder /app/build/libs/*.jar  app.jar
 EXPOSE 8080
+# VOLUME /app/filestorage/images
 ENTRYPOINT ["java", "-jar","app.jar","--server.port=${PORT}"]
 
 
