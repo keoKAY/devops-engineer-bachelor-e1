@@ -1,0 +1,24 @@
+services:
+  postgres-svc: 
+    container_name: postgres-cont 
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    secrets: 
+      - dbpassword 
+    environment:
+      #- POSTGRES_PASSWORD=${DB_PASS:-defaultpass}
+      - POSTGRES_PASSWORD_FILE=/run/secrets/dbpassword
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER:? Username is required! }
+    volumes:
+      - postgres-demo-vol:/var/lib/postgresql 
+volumes:
+  postgres-demo-vol:
+
+secrets:
+  dbpassword: 
+    file: ./secrets/dbpass.txt 
+# docker compose config 
+# docker compose up -d 
+# docker logs -f name|id 
