@@ -1,0 +1,12 @@
+.app-shell {
+  background-color: #f5f7fb;
+}
+
+.app-hero {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%);
+  box-shadow: 0 6px 24px rgba(79, 70, 229, 0.25);
+}
+
+.app-hero h1 {
+  letter-spacing: -0.02em;
+}

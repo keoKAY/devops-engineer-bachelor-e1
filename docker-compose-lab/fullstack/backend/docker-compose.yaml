@@ -1,0 +1,39 @@
+services: 
+  restful-api:
+    networks:
+      - fullstack-net 
+    image: restful-api-sample:v1.0.0
+    container_name: spring_cont
+    build: 
+     context: . 
+     dockerfile: dev.Dockerfile
+     args: 
+      - PORT=${APP_PORT:-8080}
+    # environment: 
+    pull_policy: build
+    volumes: 
+      - image-backup-vol:/app/filestorage/images
+    ports: 
+      - 8080:${APP_PORT:-8080}
+  postgres:
+    networks:
+      - fullstack-net 
+    image: postgres:latest
+    container_name: postgres_cont 
+    environment: 
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      POSTGRES_DB: ${POSTGRES_DB:-postgres}
+    volumes: 
+      - postgres-data:/var/lib/postgresql
+volumes: 
+  image-backup-vol:
+  postgres-data: 
+
+networks:
+  fullstack-net: 
+    name: fullstack-net
+    driver: bridge  
+    external: true
+# docker exec -it spring_cont getent hosts postgres
+#  docker run --rm --network fullstack-net  busybox nslookup postgres
