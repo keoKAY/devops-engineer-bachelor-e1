@@ -5,7 +5,7 @@ services:
       context: frontend 
       dockerfile: Dockerfile 
     pull_policy: build
-    image: lyvann544/frontend-image:latest
+    image: lyvanna544/frontend-image:latest
     container_name: frontend-cont  
     networks:
       - fullstack-net 
@@ -38,9 +38,13 @@ services:
       retries: 5
       start_period: 10s
 volumes:
-  database-vol: 
+  database-vol:
+    name: database-vol
+    external: true  
 networks:
   fullstack-net:
-
-
+    name: fullstack-net
+    external: true 
+# docker network create fullstack-net 
+# docker volume create database-vol 
 # docker compose up -d --build  
